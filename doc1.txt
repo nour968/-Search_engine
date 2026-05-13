@@ -1,0 +1,394 @@
+Lecture 8
+Information Retrieval
+Word Representations
+
+Context:
+Introduction to Natural Language Processing (NLP).
+Goal: Understanding how computers read and represent words.
+
+Types of word Representations
+Distributed representation
+Local representation
+
+Traditional method to Represent words (local representation)
+aka one-hot encoding
+
+Concept:
+A vector-based version of discrete representation where each word type has its own dimension.
+
+Mechanism:
+one-hot encoding represent words as sparse vectors and do not capture meaning.
+(The vector contains a single 1 (hot) in its assigned dimension and 0s everywhere else.)
+
+Every term in vocabulary T is represented by a binary vector of length |T|, where one position in the vector is set to one and the rest to zero.
+
+These vectors show no semantic relationship.
+
+No notion of similarity.
+
+One-Hot Representation
+
+Main Shortcoming (The Similarity Problem):
+Discrete representations do not capture meaning or similarity.
+
+The Sharing Issue:
+Information cannot be shared between words with similar properties.
+
+Example:
+In the sentence "The papers will be signed on Wednesday."
+It cannot recognize that Thursday or Friday are reasonable substitutes because these words are encoded as different independent integers rather than semantically similar concepts.
+
+Types of word Representations
+Local representation
+Distributed representation
+
+Types of word Representations
+Local representation
+Distributed representation
+Latent representation
+Observed representation
+
+Distributed Representations
+
+Every term in vocabulary T is represented by a real-valued vector of length k.
+The vector can be sparse or dense.
+The vector dimensions may be observed (e.g., hand-crafted features) or latent (e.g., embedding dimensions).
+
+There is a notion of similarity.
+
+Observed Distributed Representation
+aka explicit distributed representation.
+
+Key Concept:
+Words are defined by manually selected features or visible patterns in text.
+
+The Selection Challenge:
+The effectiveness of the model depends entirely on choosing the right linguistic features.
+
+One approach uses the distributional hypothesis:
+terms that are used (or occur) in similar context tend to be semantically similar.
+
+A word is characterized by the company it keeps.
+
+Examples of Distributed Representation
+
+Notion of Similarity
+
+Two terms are similar if their feature vectors are close.
+But different feature spaces may capture different notions of similarity.
+
+Similarity is not absolute. Each feature space may capture a different type of similarity.
+
+Is Seattle more similar to Sydney or Seahawks?
+
+1. Seattle is more similar to Sydney (similar type)
+2. Seattle is similar to Seahawks (similar topic)
+
+Depends on your choice of features.
+
+In-document features
+Topical similarity
+
+Neighbouring with distances features
+Typical similarity
+
+Neighbouring features
+Mix in topical and typical similarity
+
+Linguistic Regularities
+
+Concept:
+Well-designed feature spaces can capture logical relationships between words.
+
+Word Analogy Task:
+We can solve "A is to B as C is to D" using simple math.
+
+Mathematical Logic:
+(Seahawks - Seattle) removes the city context, leaving the Football Team concept.
+Adding Denver results in a vector very close to Broncos.
+
+Key takeaway:
+Vector arithmetic allows computers to perform reasoning by shifting from one concept to another through spatial directions.
+
+Types of Term Representations
+Local representation
+Distributed representation
+Latent representation
+Observed representation
+
+What are word embeddings?
+
+Word embeddings are techniques in NLP that convert words into dense numerical vectors so that words with similar meanings are placed close together in vector space.
+
+Key Concept:
+Word Vectors (Embeddings)
+Numerical representations of words.
+
+Bridge the gap between human language and computer processing.
+
+Scope:
+Focuses on the history, evolution, and modern applications of word vectors.
+
+There are many different types of word embeddings:
+
+1. Frequency based embedding
+2. Prediction based embedding
+
+Frequency based embedding
+
+1. Count vector
+2. TF-IDF vectorization
+3. Co-occurrence matrix
+
+Example count vector
+
+Document 1:
+The cat sat on the hat
+
+Document 2:
+The dog ate the cat and the hat
+
+Vocabulary:
+the cat sat on hat dog ate and
+
+Document 1
+2 1 1 1 1 0 0 0
+
+Document 2
+3 1 0 0 1 1 1 1
+
+TF-IDF vectorization
+
+Co-Occurrence matrix
+
+Example:
+Apple is a fruit.
+Mango is a fruit.
+
+Apple and mango tend to have a similar context feature, i.e., fruit.
+
+Co-Occurrence matrix describes how words occur together that in turn captures the relationships between words.
+
+Co-occurrence matrix with fixed context windows
+
+penny wise and pound foolish
+
+a penny saved is a penny earned
+
+Analysis (The Bigram Approach):
+Context: We look at pairs of consecutive words (Bigrams).
+
+The table shows that a is followed twice by penny while words earned, saved, and wise each follows penny once in our corpus.
+
+Advantage:
+It preserves the semantic relationship between words.
+
+Disadvantage:
+It requires huge memory to store the co-occurrence matrix.
+
+Prediction based embeddings
+
+Reconstruct linguistic contexts of words.
+
+1. CBOW model (use context to predict the word)
+2. Skip-gram model (use word to predict its neighbors)
+
+Tasks
+
+(WATER - WET) + FIRE = FLAMES
+(PARIS - FRANCE) + ITALY = ROME
+(WINTER - COLD) + SUMMER = WARM
+(KING - MAN) + WOMAN = QUEEN
+
+What is a Corpus?
+
+Definition:
+A large, structured collection of machine-readable texts.
+
+Purpose:
+Used as the primary data source to train NLP models.
+
+Examples:
+Wikipedia archives, news datasets, or a collection of books.
+
+Importance:
+It provides the statistical evidence needed for computers to learn word relationships and meanings.
+
+Word2Vec
+
+Goal:
+shallow neural network learning from billion words corpus.
+
+Two different architectures:
+Skip-Gram, CBOW
+
+Key Parameter:
+Window Size
+Defines the maximum distance between the current word and the predicted words within a sentence.
+
+Example:
+A window size of 2 means the model looks at 2 words before and 2 words after the target word.
+
+The Secret Behind Word Vectors
+
+Simple Neural Network:
+Word2Vec uses a shallow architecture with only one hidden layer.
+
+The Learning Process:
+While the network trains to predict words, its primary task is to optimize the weights of the hidden layer.
+
+Defining Word Vectors:
+The Word Vector or Embedding is actually the set of weights associated with each word in that hidden layer.
+
+Once training is finished, we discard the prediction part and keep these weights to use as our mathematical word representations.
+
+The Math of Word2Vec Matrices
+
+Key Parameters:
+word size (Total unique terms) = t
+Embedding size (Dimensions of the word vectors) = D
+
+The number of input neurons equals the total size of the words in the document.
+
+The output layer also has the same size as the input layer.
+
+Example
+
+Training Corpus:
+s1 = the chef cooks food
+s2 = the chef bakes bread
+s3 = the baker eats food
+
+The corpus vocabulary has eight words.
+
+Words:
+[baker, bakes, bread, chef, cooks, eats, food, the]
+
+We assume hidden layer has 3 neurons.
+
+Before training begins, these matrices are initialized to small random values as is usual in neural network training.
+
+Suppose we want the network to learn relationship between the words cooks and food.
+
+The network should show a high probability for food when cooks is inputted to the network.
+
+In word embedding terminology, the word cooks is referred as the context word and the word food is referred as the target word.
+
+Input vector for word cooks:
+[0,0,0,1,0,0,0,0]
+
+Target vector for word food:
+[0,0,0,0,0,0,1,0]
+
+Input matrix = vector cooks (1x8) * W (8x3)
+H (1x3)
+
+Output matrix = H (1x3) * W (3x8) = (1x8)
+activation vector
+
+Finally, Words as Vectors achieves this by converting activation values of output layer neurons to probabilities using the softmax function.
+
+The Equation:
+Y = [0.094925, 0.111666, 0.114441, 0.119431, 0.084321, 0.111111, 0.1445678, 0.1167890]
+
+food = [0,0,0,0,0,0,1,0]
+
+Computing Error:
+The error vector for the output layer is easily computed by subtracting the probability vector from the target vector.
+
+Once the error is known, the weights in the matrices can be updated using backpropagation.
+
+Skip-Gram
+
+Uses a current word to predict its surrounding neighbors.
+
+Window size 2
+
+The number of input neurons equals the total size of the words in the document.
+
+The output layer also has the same size as the input layer.
+
+Example:
+The small red bird flies above the green trees
+
+Target word bird
+
+Four training samples are produced:
+
+(bird, small)
+(bird, red)
+(bird, flies)
+(bird, above)
+
+Example
+
+Source Text:
+The smart robot learns from new data.
+
+Training Samples:
+(The, smart)
+(The, robot)
+(smart, The)
+(smart, robot)
+(smart, learns)
+(robot, The)
+(robot, smart)
+(robot, learns)
+(robot, from)
+(learns, smart)
+(learns, robot)
+(learns, from)
+(learns, new)
+(from, robot)
+(from, learns)
+(from, new)
+(from, data)
+
+In the example, the learned word vectors contain 300 features.
+
+So the hidden layer is represented by a weight matrix with 10,000 rows and 300 columns.
+
+There is no activation function on the hidden layer neurons, but the output neurons use softmax.
+
+Continuous Bag of Words (CBOW)
+
+CBOW is an architecture used in word embedding models like Word2Vec that learns to predict a target word based on its surrounding context words.
+
+CBOW takes multiple context words as input to determine the probability of the most likely word to appear in the center.
+
+Key Characteristics:
+
+Input:
+Multiple words from the surrounding context.
+
+Output:
+A single target word.
+
+Goal:
+To understand the relationship between words by learning which words frequently appear together in similar environments.
+
+CBOW Processing Steps
+
+Corpus:
+the small red bird flies above the green tree
+
+Vocabulary:
+[above, bird, flies, green, red, small, the, tree]
+
+Input Layer:
+It receives the four context words (small, red, flies, above) represented as one-hot vectors.
+
+Hidden Layer:
+It merges these vectors by calculating their average or sum to create a single vector that represents the context embedding.
+
+Output Layer:
+It applies the softmax function to transform the resulting vector into probabilities across the entire vocabulary.
+
+The goal is for the target word bird to achieve the highest probability score.
+
+Other Embedding Methods
+
+GloVe (Global Vectors for Word Representation)
+FastText
+ELMo (CNN, Max Pooling, LSTM)
+BERT (Bidirectional Encoder Representation from Transformers)

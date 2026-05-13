@@ -1,0 +1,136 @@
+Introduction
+
+Distributed computing system
+Consists of interconnected nodes
+Nodes cooperate to perform tasks efficiently
+
+What Constitutes a Distributed Database
+
+Connection of database nodes over a computer network
+Logical interrelation of connected databases
+Possible absence of homogeneity among nodes
+Distributed database management system DDBMS manages the distributed database
+
+Difference Between Centralized Database and Distributed Database
+
+Transparency
+
+Transparency refers to hiding implementation details from end users for a seamless experience
+
+Types of transparency
+
+Data organization transparency
+Location transparency
+Naming transparency
+Replication transparency
+Fragmentation transparency
+
+Horizontal fragmentation
+Vertical fragmentation
+
+Design transparency
+Execution transparency
+
+Distributed Databases
+
+Availability and Reliability
+
+Availability The probability that the distributed system is continuously available during a specified time interval
+Reliability The probability that the distributed system is running not down at a certain point in time
+
+Scalability and Partition Tolerance
+
+Horizontal scalability expanding the number of nodes
+Vertical scalability expanding capacity of individual nodes
+Partition tolerance system continues operating during network partitioning
+
+Autonomy
+
+Determines the extent to which nodes can operate independently
+
+Design autonomy independence of data model and transaction management techniques
+Communication autonomy determines sharing of information between nodes
+Execution autonomy independence of user actions
+
+Advantages of Distributed Databases
+
+Improved ease and flexibility of application development Development can occur at geographically dispersed sites
+
+Increased availability Faults are isolated to their site of origin ensuring availability
+
+Improved performance Data localization reduces network traffic and latency
+
+Easier expansion via scalability Adding nodes or increasing individual node capacity is easier compared to non distributed systems
+
+Data Fragmentation Replication and Allocation Techniques
+
+Fragments Logical units of the database that are distributed across nodes
+
+Horizontal fragmentation sharding Dividing a relation into subsets of tuples based on conditions or other methods
+
+Vertical fragmentation Dividing a relation vertically by columns keeping only certain attributes
+
+Horizontal Fragmentation Sharding
+
+Horizontal fragmentation divides a relation into subsets of tuples called shards by specifying conditions on attributes or other methods It groups rows to create these subsets
+
+Vertical Fragmentation
+
+Vertical fragmentation involves dividing a relation by columns keeping only certain attributes of the relation
+
+Data Fragmentation Replication and Allocation Techniques Continued
+
+Complete horizontal fragmentation
+
+Apply UNION operation to the fragments to reconstruct relation
+
+Complete vertical fragmentation
+
+Apply OUTER JOIN operation to reconstruct relation
+
+Complete Vertical Fragmentation
+
+Fragment 1 B1
+Fragment 2 B2
+
+Reconstructed relation after applying OUTER JOIN operation R B1 JOIN B2
+
+Complete Horizontal Fragmentation
+
+Fragment 1 A1
+Fragment 2 A2
+
+Reconstructed relation after applying UNION operation R A1 UNION A2
+
+Mixed Fragmentation
+
+Combination of horizontal and vertical fragmentations
+
+Data Fragmentation Replication and Allocation Techniques Continued
+
+Replication and allocation Strategies for storing fragments and replicas across nodes for performance and availability
+
+Fully replicated distributed database Whole database is replicated at every site
+
+Nonredundant allocation Each fragment is stored at exactly one site
+
+Partial replication Some fragments are replicated while others are not
+
+Data allocation involves assigning each fragment of data to a specific site within a distributed system The choices for allocation are determined based on the systems performance and availability objectives
+
+Types of Distributed Database Systems
+
+Homogeneous DDBMS
+Heterogeneous DDBMS
+
+Homogeneous DDBMS Uniform software across nodes
+
+Heterogeneous DDBMS Nodes with different software and configurations
+
+Multi database system and federated database system FDBS with shared global schema
+
+Federated database management systems issues Differences in data models constraints query languages and semantic heterogeneity
+
+Client Server Database Architecture
+
+It consists of clients running client software a set of servers which provide all database functionalities and a reliable communication infrastructure

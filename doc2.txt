@@ -1,0 +1,82 @@
+Distributed Systems and Cloud Computing
+
+Storage Basics in Cloud Computing
+
+Intended Learning Outcomes ILOs
+
+To introduce the concept of Internet Storage
+To present the Storage Area Network SAN
+To explain the difference between FC SAN and IP SAN
+
+Introduction
+
+In the era of big data it is important to store large scale data securely efficiently and cost effectively
+Virtual storage and network storage are two of the major themes of current storage technology development
+
+Virtual Storage
+
+Virtual storage refers to integrating many different types of physical storage entities that exist independently into a logical virtual storage unit through software and hardware technology which is managed and made available to users
+
+The storage capacity of a logical virtual storage unit is the sum of the storage volumes of the physical storage bodies it centrally manages while the read write bandwidth it has is close to the sum of the read write bandwidths of each physical storage
+
+In general virtualization technology is achieved by establishing a virtual abstraction layer This virtual abstraction layer provides the user with a unified interface that hides complex physical implementations
+
+Internet Storage
+
+Network storage is a special kind of dedicated data storage server including storage devices such as disk arrays tape drives or removable storage media and embedded system software and can provide platform file sharing capabilities
+
+A network is stored on a local area network with its own nodes allowing users to access data on the network
+
+There are three broad networked storage architectures Direct Attached Storage DAS NAS and SAN
+
+Direct Attached Storage DAS
+
+DAS refers to connecting an external storage device directly to a server via a connecting cable
+
+The open systems DAS technology is the first storage technology adopted and has been used for nearly 40 years
+
+DAS is a direct connection that meets the storage expansion and high performance transfer needs of a single server
+
+With the introduction of high capacity hard drives the capacity of a single external storage system will increase
+
+DAS hangs external data storage devices directly on the bus inside the server which is part of the server structure However because this storage technology is to hang storage devices directly on the server with the increasing demand more and more storage devices added to the network environment the server becomes a system bottleneck resulting in low resource utilization data sharing is severely restricted
+
+As user data continues to grow these systems are increasingly plaguing system administrators with backup recovery scaling disaster preparedness and more Therefore DAS is only available for small networks
+
+DAS relies on the server host operating system for data read write and storage maintenance management Data backup and recovery requirements consume server host resources including CPUs system IO
+
+The data flow requires a return host to the hard disk or tape drive connected to the server
+
+As a result daily data backups for many enterprise users are often made late at night or when business systems are not busy to not interfere with the operation of normal business systems
+
+The greater the amount of data in DAS the longer it takes to back up and recover and the greater the dependency and impact on server hardware
+
+These reasons have also led to DAS being gradually replaced by more advanced storage technologies
+
+Storage Area Network SAN
+
+SAN connects storage units over a high speed network shared by multiple servers enabling offsite backup of data and excellent scalability
+
+As an emerging storage solution SAN mitigates the impact of transmission bottlenecks on systems and greatly improves remote disaster backup efficiency with advantages of faster data transfer greater flexibility and reduced network complexity
+
+SAN uses block level data as its basic access unit
+
+The main implementations of this network are Fibre Channel Storage Area Network FC SAN and IP storage area network IP SAN
+
+Different forms of implementation use different communication protocols and connections to transfer data commands and states between servers and storage devices
+
+In FC SAN two network interface adapters are typically configured on a storage server a network interface adapter for a normal network card that connects to a business IP network through which the server interacts with the client and a network interface adapter that is an HBA connected to the FC SAN through which the server communicates with the storage device in the FC SAN
+
+In order to increase the popularity and scope of SAN and take full advantage of the architectural advantages of SAN itself the direction of SAN began to consider integration with the already popular and relatively inexpensive IP network Therefore IP SAN which uses an existing IP network architecture has emerged
+
+IP SAN combines standard TCP IP and SCSI instruction sets based on IP networks to achieve block level data transmission
+
+Compared with FC SAN IP SAN has the following advantages
+
+Access standardization There is no need for dedicated HBA cards and FC switches just plain Ethernet cards and Ethernet switches for storage and server connectivity
+
+Transmission distance is far In theory IP SAN can be used as long as it is accessed by IP networks which is one of the most widely used networks
+
+It is maintainable most network maintenance personnel have an IP network foundation IP SAN is naturally more acceptable than FC SAN and IP network maintenance tools have been very developed
+
+It is easy to extend the bandwidth in the future Because the iSCSI protocol is hosted by Ethernet with the rapid development of Ethernet IP SAN single port bandwidth expansion to more than 10GB is an inevitable result of development
